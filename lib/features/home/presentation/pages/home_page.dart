@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/injection_container.dart';
 import '../manager/product/product_cubit.dart';
-import '../widgets/product_grid_view.dart';
+import '../widgets/product/product_grid_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
