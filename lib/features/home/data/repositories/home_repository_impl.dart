@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/utils/safe_call.dart';
 import '../../../../shared/models/pagination/pagination_params.dart';
-import '../../domain/entities/product_entity.dart';
+import '../../domain/entities/product/product_entity.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../datasources/home_local_data_source.dart';
 import '../datasources/home_remote_data_source.dart';
@@ -20,18 +20,22 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<Either<Failure, List<ProductEntity>>> getProduct(
     PaginationParams params,
-  ) {
-    return safeCall(() async {
-      // Get the products from the local
-      final cachedProducts = localDataSource.fetchProducts(params: params);
-      if (cachedProducts.isNotEmpty) {
-        return cachedProducts;
-      }
+  ) async {
+    
+    final cached = localDataSource.fetchProducts();
+    final result = await safeCall(() => remoteDataSource.fetchProduct(params));
 
-      // Get the products from the remote
-      final remoteProducts = await remoteDataSource.fetchProduct(params);
-
-      return remoteProducts;
-    });
+    return result.fold(
+      (failure) {
+        if (cached.isNotEmpty) {
+          return Right(cached);
+        }
+        return Left(failure);
+      },
+      (remote) async {
+        await localDataSource.saveProducts(remote);
+        return Right(remote);
+      },
+    );
   }
 }
