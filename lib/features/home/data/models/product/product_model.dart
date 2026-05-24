@@ -1,7 +1,7 @@
-import '../../domain/entities/product_entity.dart';
-import 'sub_model/dimensions_model.dart';
-import 'sub_model/meta_model.dart';
-import 'sub_model/review_model.dart';
+import '../../../domain/entities/product/product_entity.dart';
+import 'dimensions_model.dart';
+import 'meta_model.dart';
+import 'review_model.dart';
 
 class ProductModel extends ProductEntity {
   const ProductModel({

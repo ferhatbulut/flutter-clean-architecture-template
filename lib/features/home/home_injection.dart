@@ -16,10 +16,7 @@ void initHome() async {
 
   // Data Sources
   sl.registerLazySingleton<HomeRemoteDataSource>(
-    () => HomeRemoteDataSourceImpl(
-      sl<ApiConsumer>(),
-      homeLocalDataSource: sl<HomeLocalDataSource>(),
-    ),
+    () => HomeRemoteDataSourceImpl(sl<ApiConsumer>()),
   );
   sl.registerLazySingleton<HomeLocalDataSource>(
     () => HomeLocalDataSourceImpl(),

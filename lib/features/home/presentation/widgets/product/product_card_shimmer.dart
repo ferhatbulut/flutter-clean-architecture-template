@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/extensions/spacing_extension.dart';
-import '../../../../shared/widgets/custom_shimmer.dart';
+import '../../../../../core/extensions/spacing_extension.dart';
+import '../../../../../shared/widgets/custom_shimmer.dart';
 
 class ProductCardShimmer extends StatelessWidget {
   const ProductCardShimmer({super.key, this.width = 140});
