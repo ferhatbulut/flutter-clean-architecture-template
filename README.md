@@ -304,14 +304,3 @@ The structure keeps logic in Use Cases and Repositories, which makes **unit test
 4. **Swappable infrastructure** — replace Dio or storage without touching Cubits.
 5. **Developer experience** — Mason + documented commands in `main_common.dart` to reduce copy-paste.
 
----
-
-## Contributing
-
-Contributions are welcome: Fork → branch → Pull Request with a clear description and a successful run on the `dev` flavor.
-
----
-
-## License
-
-Add a `LICENSE` file (e.g. MIT) before publishing publicly.
